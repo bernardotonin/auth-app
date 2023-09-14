@@ -4,3 +4,4 @@ npm install @react-navigation/native-stack
 expo install expo-app-loading
 npx expo install expo-font
 expo install firebase
+npx expo install react-hook-form

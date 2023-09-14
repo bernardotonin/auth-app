@@ -14,9 +14,9 @@ const PrimaryInput = ({label, error, password = false, onFocus = () => {}, ...pr
     const [isFocused, setIsFocused] = useState(false);
     
     return (
-        <View style={[style.outerContainer ,{borderWidth: error ? 2 : isFocused ? 2 : 0 ,borderColor : error ? '#960101' : isFocused ? colors.red500 : 'black'}]}>
+        <View style={style.outerContainer}>
             <Text style={style.label}>{label}</Text>
-            <View style={style.inputContainer}>
+            <View style={[style.inputContainer, {borderWidth: error ? 2 : isFocused ? 2 : 0 ,borderColor : error ? '#ff0000' : isFocused ? colors.red500 : 'black'}]}>
                 <TextInput 
                 onFocus={() => {
                     //onFocus();
@@ -40,13 +40,14 @@ const PrimaryInput = ({label, error, password = false, onFocus = () => {}, ...pr
 const style = StyleSheet.create({
     outerContainer: {
         padding: 4,
-        borderRadius: 6,
     },
 
     inputContainer: {
         width: 343,
         height: 64,
         padding: 4,
+        borderRadius: 6,
+
     },
 
     input: {
@@ -54,7 +55,7 @@ const style = StyleSheet.create({
     },
 
     errorMsg: {
-        color: '#960101',
+        color: '#ff0000',
         textAlign: 'center',
         marginTop: 2
     },
