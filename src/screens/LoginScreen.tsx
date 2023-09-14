@@ -1,15 +1,17 @@
 import { View, Text, StyleSheet, Keyboard } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import PrimaryInput from "../components/PrimaryInput";
-import ForgotPwButton from "../components/ForgotPwButton";
+import ArrowButton from "../components/ArrowButton";
 import { useForm, Controller} from "react-hook-form";
+import { useNavigation } from "@react-navigation/native";
 
 type FormData = {
     email: string,
     password: string
 }
 
-const LoginScreen = ({...props}) => {
+const LoginScreen = () => {
+
     const {control, handleSubmit, formState: { errors }} = useForm<FormData>();
 
     const onPressLogin = (data : FormData) => {
@@ -19,7 +21,6 @@ const LoginScreen = ({...props}) => {
     }
 
     const onPressForgetPw = () => {
-        
     }
 
 
@@ -32,7 +33,11 @@ const LoginScreen = ({...props}) => {
                         control={control}
                         name="email"
                         rules={{
-                            required: "Email Obrigatório."
+                            required: "Email is mandatory.",
+                            pattern: {
+                                message: "Please enter a valid email.",
+                                value: /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+                            }
                         }}
                         render={({field : { value, onChange}})=> (
                             <PrimaryInput label= {'Email'} placeholder= "Please enter your email" value={value} onChangeText={onChange} autoCapitalize="none" error={errors?.email?.message}/>
@@ -43,15 +48,15 @@ const LoginScreen = ({...props}) => {
                         control={control}
                         name="password"
                         rules={{
-                            required: "Insira sua Senha."
+                            required: "Password is mandatory."
                         }}
                         render={({field : { value, onChange}})=> (
-                            <PrimaryInput label={'Password'} password={true} placeholder= "Password" value={value} onChangeText={onChange} error={errors?.password?.message}/>
+                            <PrimaryInput label={'Password'} password={true} placeholder= "Please enter your password" value={value} onChangeText={onChange} error={errors?.password?.message}/>
                         )}/>
                         
                     </View>
                     <View style={style.forgotButton}>
-                        <ForgotPwButton onPress={onPressForgetPw}/>
+                        <ArrowButton title="Forgot your password?" onPress={onPressForgetPw}/>
                     </View>
                     <View style={style.buttonContainer}>
                         <PrimaryButton onPress={handleSubmit(onPressLogin)}>LOGIN</PrimaryButton>

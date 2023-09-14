@@ -2,15 +2,16 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { View, Pressable, Text, StyleSheet, GestureResponderEvent } from 'react-native';
 import colors from '../styles/colors';
 
-interface ForgotPwButtonProps {
+interface ArrowButtonProps {
     onPress: (event: GestureResponderEvent) => void;
+    title: string;
 }
 
-const ForgotPwButton = ({onPress} : ForgotPwButtonProps) => {
+const ArrowButton = ({onPress, title} : ArrowButtonProps) => {
     return (
         <View>
             <Pressable style={style.mainContainer} onPress={onPress}>
-                <Text>Forgot your password?</Text>
+                <Text>{title}</Text>
                 <Ionicons name='arrow-forward-outline' color={colors.red500} size={24}/>
             </Pressable>
         </View>
@@ -26,4 +27,4 @@ const style = StyleSheet.create({
     
 });
 
-export default ForgotPwButton;
+export default ArrowButton;
