@@ -32,7 +32,11 @@ const LoginScreen = ({...props}) => {
                         control={control}
                         name="email"
                         rules={{
-                            required: "Email Obrigatório."
+                            required: "Email Obrigatório.",
+                            pattern: {
+                                message: "Insira um email válido.",
+                                value: /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+                            }
                         }}
                         render={({field : { value, onChange}})=> (
                             <PrimaryInput label= {'Email'} placeholder= "Please enter your email" value={value} onChangeText={onChange} autoCapitalize="none" error={errors?.email?.message}/>
@@ -43,7 +47,11 @@ const LoginScreen = ({...props}) => {
                         control={control}
                         name="password"
                         rules={{
-                            required: "Insira sua Senha."
+                            required: "Insira sua Senha.",
+                            minLength: {
+                                value: 4,
+                                message: "Minimo de 4 caracteres."
+                            }
                         }}
                         render={({field : { value, onChange}})=> (
                             <PrimaryInput label={'Password'} password={true} placeholder= "Password" value={value} onChangeText={onChange} error={errors?.password?.message}/>
