@@ -53,6 +53,11 @@ const LoginScreen = () => {
                         name="password"
                         rules={{
                             required: "Password is mandatory."
+                            minLength: {
+                                value: 4,
+                                message: "Password must be at least 4 characters long."
+                            }
+
                         }}
                         render={({field : { value, onChange}})=> (
                             <PrimaryInput label={'Password'} password={true} placeholder= "Please enter your password" value={value} onChangeText={onChange} error={errors?.password?.message}/>
