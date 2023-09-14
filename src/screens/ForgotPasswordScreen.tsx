@@ -5,9 +5,10 @@ import PrimaryButton from "../components/PrimaryButton";
 
 type FormData = {
     email: string
+
 }
 
-const ForgotPasswordScreen = ({...props}) => {
+const ForgotPasswordScreen = () => {
     const {control, handleSubmit, formState: { errors }} = useForm<FormData>();
 
 
@@ -66,8 +67,8 @@ const style = StyleSheet.create({
 
     buttonContainer: {
         marginTop: 32
+
     },
-    
 });
 
 export default ForgotPasswordScreen;
