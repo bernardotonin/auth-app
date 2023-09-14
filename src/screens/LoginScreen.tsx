@@ -1,13 +1,21 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Keyboard } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import PrimaryInput from "../components/PrimaryInput";
 import ForgotPwButton from "../components/ForgotPwButton";
+import { useForm, Controller} from "react-hook-form";
 
-
+type FormData = {
+    email: string,
+    password: string
+}
 
 const LoginScreen = ({...props}) => {
-    const onPressLogin = () => {
-        console.log('pressed');
+    const {control, handleSubmit, formState: { errors }} = useForm<FormData>();
+
+    const onPressLogin = (data : FormData) => {
+        console.log(data.email);
+        console.log(data.password);
+        Keyboard.dismiss();
     }
 
     const onPressForgetPw = () => {
@@ -20,17 +28,42 @@ const LoginScreen = ({...props}) => {
             <Text style={style.header}>Login</Text>
                 <View style={style.inputGroup}>
                     <View style={style.emailInput}>
-                        <PrimaryInput label= {'Email'}  placeholder= "Please enter your email"/>
+                        <Controller 
+                        control={control}
+                        name="email"
+                        rules={{
+                            required: "Email Obrigatório.",
+                            pattern: {
+                                message: "Insira um email válido.",
+                                value: /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+                            }
+                        }}
+                        render={({field : { value, onChange}})=> (
+                            <PrimaryInput label= {'Email'} placeholder= "Please enter your email" value={value} onChangeText={onChange} autoCapitalize="none" error={errors?.email?.message}/>
+                        )}/>
                     </View>
                     <View style={style.passwordInput}>
-                        <PrimaryInput label={'Password'} password={true} placeholder= "Password"/>
+                        <Controller 
+                        control={control}
+                        name="password"
+                        rules={{
+                            required: "Insira sua Senha.",
+                            minLength: {
+                                value: 4,
+                                message: "Minimo de 4 caracteres."
+                            }
+                        }}
+                        render={({field : { value, onChange}})=> (
+                            <PrimaryInput label={'Password'} password={true} placeholder= "Password" value={value} onChangeText={onChange} error={errors?.password?.message}/>
+                        )}/>
+                        
                     </View>
                     <View style={style.forgotButton}>
                         <ForgotPwButton onPress={onPressForgetPw}/>
                     </View>
                     <View style={style.buttonContainer}>
-                        <PrimaryButton onPress={onPressLogin}>LOGIN</PrimaryButton>
-                </View>
+                        <PrimaryButton onPress={handleSubmit(onPressLogin)}>LOGIN</PrimaryButton>
+                    </View>
                 </View>
         </View>
     );
