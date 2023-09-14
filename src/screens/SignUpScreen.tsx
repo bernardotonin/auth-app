@@ -1,12 +1,15 @@
 import PrimaryButton from "../components/PrimaryButton";
 import PrimaryInput from "../components/PrimaryInput";
 import ArrowButton from "../components/ArrowButton";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { useNavigation } from "@react-navigation/native";
+import { StackTypes } from "../routes/AppNavigator";
 
 
 const SignUpScreen = () => {
+    const navigator = useNavigation<StackTypes>();
+
     type SignUpFormData = {
         name: string,
         email: string,
@@ -15,11 +18,10 @@ const SignUpScreen = () => {
 
 
     const onPressLogin = () => {
-        
+        navigator.navigate('login');
     }
 
     const onPressSignUp = (data: SignUpFormData) => {
-
     }
 
     const {control, handleSubmit ,formState: { errors }} = useForm<SignUpFormData>();

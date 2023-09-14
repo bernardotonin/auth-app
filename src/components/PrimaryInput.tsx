@@ -11,10 +11,8 @@ interface InputProps extends TextInputProps {
 }
 
 
-const PrimaryInput = ({label, error, password = false, ...props}: InputProps) => {
+const PrimaryInput = ({label, error, password = false, onFocus = () => {}, ...props}: InputProps) => {
     const [isFocused, setIsFocused] = useState(false);
-
-    
     
     return (
         <View style={style.outerContainer}>
@@ -22,6 +20,7 @@ const PrimaryInput = ({label, error, password = false, ...props}: InputProps) =>
             <View style={[style.inputContainer, {borderWidth: error ? 2 : isFocused ? 2 : 0 ,borderColor : error ? '#ff0000' : isFocused ? colors.red500 : 'black'}]}>
                 <TextInput 
                 onFocus={() => {
+                    //onFocus();
                     setIsFocused(true);
                 }}
                 onBlur={() => {

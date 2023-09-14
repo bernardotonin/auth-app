@@ -24,9 +24,9 @@ const ForgotPasswordScreen = () => {
                 name="email" 
                 control={control}
                 rules={{
-                    required: "Email Obrigatório.",
+                    required: "Please enter your email.",
                     pattern: {
-                        message: "Insira um email válido.",
+                        message: "Invalid email.",
                         value: /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
                     }
                 }}
@@ -49,7 +49,7 @@ const style = StyleSheet.create({
         fontFamily: 'roboto-bold',
         fontSize: 34,
         fontWeight: 'bold',
-        marginTop: 100,
+        marginTop: 40,
         marginLeft: 14,
         alignSelf: 'flex-start'
     },
