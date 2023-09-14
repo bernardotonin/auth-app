@@ -4,6 +4,7 @@ import PrimaryInput from "../components/PrimaryInput";
 import ArrowButton from "../components/ArrowButton";
 import { useForm, Controller} from "react-hook-form";
 import { useNavigation } from "@react-navigation/native";
+import { StackTypes } from "../routes/AppNavigator";
 
 type FormData = {
     email: string,
@@ -11,6 +12,8 @@ type FormData = {
 }
 
 const LoginScreen = () => {
+
+    const navigator = useNavigation<StackTypes>();
 
     const {control, handleSubmit, formState: { errors }} = useForm<FormData>();
 
@@ -21,6 +24,7 @@ const LoginScreen = () => {
     }
 
     const onPressForgetPw = () => {
+        navigator.navigate('forgotpw')
     }
 
 
@@ -71,7 +75,7 @@ const style = StyleSheet.create({
         fontFamily: 'roboto-bold',
         fontSize: 34,
         fontWeight: 'bold',
-        marginTop: 100,
+        marginTop: 50,
         marginLeft: 14
         
     },

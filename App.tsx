@@ -1,16 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './src/screens/LoginScreen';
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUpScreen from './src/screens/SignUpScreen';
+import AppNavigator from './src/routes/AppNavigator';
+const App = () => {
 
-
-const Stack = createNativeStackNavigator();
-
-
-export default function App() {
   const [fontsLoaded] = useFonts({
     'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
     'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
@@ -23,17 +15,9 @@ export default function App() {
   return (
     <>
       <StatusBar style='dark'/>
-      <SignUpScreen/>
+      <AppNavigator/>
     </>
-
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, TextInput, StyleSheet, Text} from "react-native";
 import { TextInputProps } from "react-native";
 import colors from "../styles/colors";
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 interface InputProps extends TextInputProps {
     label: String,
@@ -10,10 +11,8 @@ interface InputProps extends TextInputProps {
 }
 
 
-const PrimaryInput = ({label, error, password = false, ...props}: InputProps) => {
+const PrimaryInput = ({label, error, password = false, onFocus = () => {}, ...props}: InputProps) => {
     const [isFocused, setIsFocused] = useState(false);
-
-    
     
     return (
         <View style={style.outerContainer}>
@@ -21,6 +20,7 @@ const PrimaryInput = ({label, error, password = false, ...props}: InputProps) =>
             <View style={[style.inputContainer, {borderWidth: error ? 2 : isFocused ? 2 : 0 ,borderColor : error ? '#ff0000' : isFocused ? colors.red500 : 'black'}]}>
                 <TextInput 
                 onFocus={() => {
+                    //onFocus();
                     setIsFocused(true);
                 }}
                 onBlur={() => {
@@ -29,7 +29,9 @@ const PrimaryInput = ({label, error, password = false, ...props}: InputProps) =>
                 {...props} 
                 style={style.input}
                 secureTextEntry={password}
+                
                 />
+                {error && (<Ionicons style={style.errorIcon} name="close-outline" color={"red"} size={36}/>)}
             </View>
             {error && (
                 <Text style={style.errorMsg}>{error}</Text>
@@ -48,7 +50,7 @@ const style = StyleSheet.create({
         height: 64,
         padding: 4,
         borderRadius: 6,
-
+        flexDirection: 'row'
     },
 
     input: {
@@ -63,6 +65,10 @@ const style = StyleSheet.create({
     label: {
         color: '#9B9B9B',
         fontSize: 11
+    },
+
+    errorIcon: {
+        alignSelf: 'center'
     }
 });
 
