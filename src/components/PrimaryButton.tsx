@@ -1,5 +1,5 @@
 import { View, Pressable, Text, GestureResponderEvent, StyleSheet } from "react-native";
-
+import colors from "../styles/colors";
 type ButtonProps = {
     onPress: (event: GestureResponderEvent) => void;
     children: String;
@@ -30,7 +30,7 @@ const style = StyleSheet.create({
     },
 
     buttonPressable: {
-        backgroundColor: "#DB3022",
+        backgroundColor: colors.red500,
         paddingVertical: 8,
         paddingHorizontal: 16,
         width: 343,
