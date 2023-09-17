@@ -45,7 +45,7 @@ const LoginScreen = () => {
   const onPressForgetPw = () => {
     navigator.navigate("forgotpw");
   };
-
+    
   return (
     <View>
       <Text style={style.header}>Login</Text>

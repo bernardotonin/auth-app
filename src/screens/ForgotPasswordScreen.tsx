@@ -18,7 +18,7 @@ const ForgotPasswordScreen = ({ ...props }) => {
     formState: { errors },
   } = useForm<FormData>();
   const navigator = useNavigation();
-
+      
   const onPressSend = (data: FormData) => {
     try {
       sendPasswordResetEmail(auth, data.email);
@@ -95,9 +95,11 @@ const style = StyleSheet.create({
     marginBottom: 16,
   },
 
+
   buttonContainer: {
     marginTop: 32,
   },
+
 });
 
 export default ForgotPasswordScreen;
