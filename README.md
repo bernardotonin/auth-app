@@ -6,11 +6,10 @@ Student: Bernardo Tonin Prates
 Made in Expo
  # Usage
  
-
-    npx create-expo-app -t expo-template-blank-typescript
-    git pull https://github.com/bernardotonin/projeto-compass_sales-bernardo_tonin_prates-equipe3.git
-    // install dependencies
-
+    git clone https://github.com/bernardotonin/projeto-compass_sales-bernardo_tonin_prates-equipe3.git
+    npm install
+    npm start
+    
 # Dependencies
 
     npx expo install react-native-screens react-native-safe-area-context
