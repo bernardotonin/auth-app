@@ -1,4 +1,6 @@
 # CompassSalesApp Project
+Simple React Native application that has login, signup and forgot password functionalities
+
 Challenge 2 of the CompassUOL Scholarship Program
 
 Student: Bernardo Tonin Prates
